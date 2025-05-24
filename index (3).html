@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>계좌이체 안내 (딥링크 지원)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f7f9fc;
+            padding: 40px;
+            text-align: center;
+        }
+        .card {
+            background-color: white;
+            max-width: 420px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .info {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 8px 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007aff;
+            color: white;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #005bb5;
+        }
+        .bank-buttons {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>계좌이체 정보</h2>
+        <div class="info"><strong>은행명:</strong> 국민은행</div>
+        <div class="info"><strong>예금주:</strong> 김민서</div>
+        <div class="info"><strong>계좌번호:</strong> <span id="account">94900200430797</span></div>
+
+        <button class="button" onclick="copyAccount()">계좌번호 복사</button>
+
+        <div class="bank-buttons">
+            <button class="button" onclick="openDeepLink('toss://')">토스뱅크 앱 실행</button>
+            <button class="button" onclick="openDeepLink('kakaobank://')">카카오뱅크 앱 실행</button>
+            <button class="button" onclick="openDeepLink('shinhanbank://')">신한은행 앱 실행</button>
+            <button class="button" onclick="openDeepLink('kakaopay://')">카카오페이 앱 실행</button>
+        </div>
+    </div>
+
+    <script>
+        function copyAccount() {
+            const accountText = document.getElementById("account").innerText;
+            navigator.clipboard.writeText(accountText).then(function() {
+                alert("계좌번호가 복사되었습니다: " + accountText);
+            }, function(err) {
+                alert("복사 실패: " + err);
+            });
+        }
+
+        function openDeepLink(urlScheme) {
+            window.location.href = urlScheme;
+        }
+    </script>
+</body>
+</html>
